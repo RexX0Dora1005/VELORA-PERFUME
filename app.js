@@ -550,7 +550,7 @@ function handlePlaceOrder(e) {
       <div class="receipt-masthead">
         <img src="assets/images/logo.jpg" alt="VÉLORA Emblem" class="receipt-logo-img" />
         <h3>VÉLORA PARFUMS</h3>
-        <p>OFFICIAL ORDER RECEIPT & CERTIFICATE OF AUTHENTICITY</p>
+        <p style="letter-spacing: 2px; font-weight: 600; color: #fff;">CHECKOUT FINAL RECEIPT & OFFICIAL INVOICE</p>
         <p class="receipt-tax-meta">Maison VÉLORA S.A. • 30 Rue de la Paix, 75002 Paris • Tax ID: 0-1055-67012-99-1</p>
       </div>
 
@@ -961,19 +961,5 @@ function autoFillDemoData() {
 }
 window.autoFillDemoData = autoFillDemoData;
 
-// Instant Demo Receipt Workflow
-function previewSampleReceipt() {
-  if (!cart || cart.length === 0) {
-    const noir = PRODUCTS.find(p => p.id === 'noir') || PRODUCTS[0];
-    const bloom = PRODUCTS.find(p => p.id === 'bloom') || PRODUCTS[1];
-    addToCart(noir.id, noir.name, '100ml', noir.price100, noir.image);
-    addToCart(bloom.id, bloom.name, '50ml', bloom.price50, bloom.image);
-  }
-  openCheckout();
-  setTimeout(() => {
-    autoFillDemoData();
-  }, 200);
-}
-window.previewSampleReceipt = previewSampleReceipt;
 
 

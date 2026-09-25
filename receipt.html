@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VÉLORA Parfums — Official Order Receipt & Certificate of Authenticity</title>
+  <title>VÉLORA Parfums — Checkout Final Receipt & Official Tax Invoice</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -60,6 +60,31 @@
     .toolbar-actions {
       display: flex;
       gap: 10px;
+    }
+
+    .checkout-success-banner {
+      background: rgba(76, 217, 100, 0.08);
+      border: 1px solid rgba(76, 217, 100, 0.25);
+      border-radius: 4px;
+      padding: 14px 18px;
+      margin-bottom: 26px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .success-icon {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: rgba(76, 217, 100, 0.2);
+      color: #4cd964;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
     }
 
     .certificate-card {
@@ -431,6 +456,9 @@
       .barcode-svg text {
         fill: #333 !important;
       }
+      .checkout-success-banner {
+        display: none !important;
+      }
     }
 
     @media (max-width: 768px) {
@@ -452,7 +480,7 @@
     </div>
     <div class="toolbar-actions">
       <button type="button" class="btn btn-gold btn-sm" onclick="window.print()">
-        <span>🖨️ Print / Save A4 PDF</span>
+        <span>🖨️ Print Final Receipt (A4)</span>
       </button>
       <button type="button" class="btn btn-outline btn-sm" onclick="exportReceiptText()">
         <span>📄 Download Text Record</span>
@@ -462,10 +490,19 @@
 
   <!-- Luxury Certificate & Invoice Document -->
   <div class="certificate-card" id="certificateCard">
+    <!-- Checkout Success Notification Banner -->
+    <div class="checkout-success-banner">
+      <span class="success-icon">✓</span>
+      <div>
+        <h4 style="margin: 0; color: #4cd964; letter-spacing: 2px; font-size: 0.84rem; text-transform: uppercase;">Checkout Completed & Confirmed</h4>
+        <p style="margin: 3px 0 0 0; font-size: 0.76rem; color: #c4c4c8;">Official Order Final Receipt & Tax Invoice</p>
+      </div>
+    </div>
+
     <div class="cert-header">
       <img src="assets/images/logo.jpg" alt="VÉLORA Emblem" class="cert-logo" />
       <h1 class="cert-brand-title">VÉLORA PARFUMS</h1>
-      <p class="cert-doc-type">Official Tax Invoice & Certificate of Authenticity</p>
+      <p class="cert-doc-type">Checkout Final Receipt & Official Tax Invoice</p>
       <p class="cert-legal-meta">Maison VÉLORA S.A. • 30 Rue de la Paix, 75002 Paris • Tax Registration: 0-1055-67012-99-1</p>
     </div>
 
