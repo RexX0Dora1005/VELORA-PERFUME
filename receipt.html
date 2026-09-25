@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VÉLORA Parfums — Official Order Receipt & Certificate of Authenticity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --bg-cert: #0a0a0c;
+      --paper-bg: #111114;
+      --gold-foil: #d4af37;
+      --gold-champagne: #e5c07b;
+      --text-main: #f5f5f7;
+      --text-sub: #a1a1aa;
+      --border-lux: rgba(212, 175, 55, 0.35);
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 20%, #171511 0%, #08080a 100%);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .top-toolbar {
+      width: 100%;
+      max-width: 820px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .toolbar-left a {
+      color: var(--gold-champagne);
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 1.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .toolbar-left a:hover {
+      color: #fff;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .certificate-card {
+      background: var(--paper-bg);
+      border: 1px solid var(--border-lux);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 0 40px rgba(212, 175, 55, 0.03);
+      max-width: 820px;
+      width: 100%;
+      padding: 48px;
+      border-radius: 4px;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    /* Double luxury gold border effect */
+    .certificate-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      pointer-events: none;
+    }
+
+    .cert-header {
+      text-align: center;
+      border-bottom: 1px solid var(--border-lux);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .cert-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-foil);
+      margin-bottom: 12px;
+      object-fit: cover;
+    }
+
+    .cert-brand-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      letter-spacing: 5px;
+      color: var(--gold-foil);
+      margin: 0 0 6px 0;
+    }
+
+    .cert-doc-type {
+      font-size: 0.76rem;
+      letter-spacing: 3px;
+      color: #d1d1d6;
+      margin: 0 0 6px 0;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .cert-legal-meta {
+      font-size: 0.68rem;
+      color: var(--text-sub);
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    .cert-meta-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      background: rgba(212, 175, 55, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 2px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+    }
+
+    .meta-box-label {
+      font-size: 0.64rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .meta-box-val {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .cert-parties-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 24px;
+    }
+
+    .party-title {
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-champagne);
+      margin: 0 0 10px 0;
+    }
+
+    .party-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 4px 0;
+    }
+
+    .party-sub {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin: 2px 0;
+      line-height: 1.5;
+    }
+
+    .gift-inscription-box {
+      background: rgba(26, 23, 16, 0.8);
+      border-left: 2px solid var(--gold-foil);
+      padding: 16px 20px;
+      border-radius: 0 4px 4px 0;
+      margin-bottom: 28px;
+    }
+
+    .gift-inscription-title {
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      color: var(--gold-champagne);
+      text-transform: uppercase;
+      margin: 0 0 6px 0;
+    }
+
+    .gift-inscription-body {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: #f0ede6;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .cert-items-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+
+    .cert-items-table th {
+      text-align: left;
+      font-size: 0.68rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .cert-items-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.85rem;
+      vertical-align: middle;
+    }
+
+    .item-cell-flex {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .item-cell-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .item-cell-name {
+      font-weight: 600;
+      color: #fff;
+      margin: 0;
+    }
+
+    .item-cell-sub {
+      font-size: 0.72rem;
+      color: var(--text-sub);
+      margin: 2px 0 0 0;
+    }
+
+    .financial-split-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 10px;
+      margin-bottom: 24px;
+    }
+
+    .seal-wrap {
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.3);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .wax-seal {
+      width: 68px;
+      height: 68px;
+      min-width: 68px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #8a1f1f 0%, #4a0c0c 100%);
+      border: 2px solid #b83a3a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffcccc;
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      line-height: 1.1;
+      text-align: center;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.6), 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .seal-desc {
+      font-size: 0.72rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    .seal-desc strong {
+      color: var(--gold-champagne);
+    }
+
+    .master-signature {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .sig-name {
+      font-family: 'Cormorant Garamond', cursive;
+      font-style: italic;
+      font-size: 1.6rem;
+      color: var(--gold-champagne);
+      line-height: 1.1;
+    }
+
+    .sig-title {
+      font-size: 0.65rem;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .totals-box table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .totals-box td {
+      padding: 6px 0;
+      font-size: 0.85rem;
+    }
+
+    .totals-grand-row {
+      border-top: 1px solid var(--border-lux);
+      font-size: 1.15rem !important;
+      font-weight: 700;
+      color: var(--gold-foil) !important;
+      padding-top: 10px !important;
+    }
+
+    .cert-barcode-box {
+      text-align: center;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
+      padding-top: 20px;
+      margin-top: 24px;
+    }
+
+    .cert-footer-disclaimer {
+      text-align: center;
+      font-size: 0.68rem;
+      color: var(--text-sub);
+      margin-top: 24px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Print Specific Styling (Clean A4 Paper) */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #111 !important;
+        padding: 0 !important;
+      }
+
+      .top-toolbar {
+        display: none !important;
+      }
+
+      .certificate-card {
+        background: #fff !important;
+        color: #111 !important;
+        border: 2px solid #886a1f !important;
+        box-shadow: none !important;
+        padding: 24px !important;
+        max-width: 100% !important;
+      }
+
+      .certificate-card::before {
+        border-color: #886a1f !important;
+      }
+
+      .cert-brand-title {
+        color: #886a1f !important;
+      }
+
+      .cert-doc-type, .cert-legal-meta, .party-sub, .seal-desc, .sig-title, .meta-box-label {
+        color: #444 !important;
+      }
+
+      .party-name, .meta-box-val, .item-cell-name, #txtTotal {
+        color: #111 !important;
+      }
+
+      .cert-meta-ribbon {
+        background: #f7f6f2 !important;
+        border-color: #d1c7a8 !important;
+      }
+
+      .gift-inscription-box {
+        background: #faf8f5 !important;
+        border-left: 3px solid #886a1f !important;
+      }
+
+      .gift-inscription-body {
+        color: #222 !important;
+      }
+
+      .seal-wrap {
+        background: #faf8f5 !important;
+        border-color: #d1c7a8 !important;
+      }
+
+      .sig-name {
+        color: #886a1f !important;
+      }
+
+      .totals-grand-row {
+        color: #886a1f !important;
+      }
+
+      .barcode-svg rect {
+        fill: #111 !important;
+      }
+
+      .barcode-svg text {
+        fill: #333 !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .certificate-card { padding: 24px 18px; }
+      .cert-meta-ribbon { grid-template-columns: 1fr 1fr; }
+      .cert-parties-grid { grid-template-columns: 1fr; gap: 16px; }
+      .financial-split-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Action Toolbar -->
+  <div class="top-toolbar">
+    <div class="toolbar-left">
+      <a href="index.html">
+        <span>← Return to VÉLORA Maison</span>
+      </a>
+    </div>
+    <div class="toolbar-actions">
+      <button type="button" class="btn btn-gold btn-sm" onclick="window.print()">
+        <span>🖨️ Print / Save A4 PDF</span>
+      </button>
+      <button type="button" class="btn btn-outline btn-sm" onclick="exportReceiptText()">
+        <span>📄 Download Text Record</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Luxury Certificate & Invoice Document -->
+  <div class="certificate-card" id="certificateCard">
+    <div class="cert-header">
+      <img src="assets/images/logo.jpg" alt="VÉLORA Emblem" class="cert-logo" />
+      <h1 class="cert-brand-title">VÉLORA PARFUMS</h1>
+      <p class="cert-doc-type">Official Tax Invoice & Certificate of Authenticity</p>
+      <p class="cert-legal-meta">Maison VÉLORA S.A. • 30 Rue de la Paix, 75002 Paris • Tax Registration: 0-1055-67012-99-1</p>
+    </div>
+
+    <!-- Meta Ribbon -->
+    <div class="cert-meta-ribbon">
+      <div>
+        <span class="meta-box-label">Order Reference</span>
+        <span class="meta-box-val" id="txtOrderNum" style="color: var(--gold-foil);">#VEL-849201</span>
+      </div>
+      <div>
+        <span class="meta-box-label">Acquisition Date</span>
+        <span class="meta-box-val" id="txtOrderDate">September 25, 2026</span>
+      </div>
+      <div>
+        <span class="meta-box-label">Fulfillment Status</span>
+        <span class="meta-box-val" style="color: #4cd964;">CONFIRMED & ISSUED</span>
+      </div>
+      <div>
+        <span class="meta-box-label">Delivery Schedule</span>
+        <span class="meta-box-val" id="txtDeliveryDays">Within 48 Hours</span>
+      </div>
+    </div>
+
+    <!-- Parties Grid -->
+    <div class="cert-parties-grid">
+      <div>
+        <h4 class="party-title">Consignee & Destination</h4>
+        <p class="party-name" id="txtCustName">Lady Eleanor Vance</p>
+        <p class="party-sub" id="txtCustContact">081-987-6543 • eleanor.vance@maison-luxe.com</p>
+        <p class="party-sub" id="txtCustAddress">Suite 1402, Mandarin Oriental Residences, 48 Charoen Krung Rd, Bang Rak, Bangkok 10500</p>
+        <p class="party-sub" style="color: var(--gold-champagne); margin-top: 6px;" id="txtDeliveryMethod">Courier: White-Glove Standard Delivery</p>
+      </div>
+
+      <div>
+        <h4 class="party-title">Settlement & Verification</h4>
+        <p class="party-name" id="txtPaymentMethod">PromptPay QR Instant Clearance</p>
+        <p class="party-sub">Transaction ID: <span id="txtTxnId">TXN-8491038</span></p>
+        <p class="party-sub" style="color: #4cd964;">Authentication: Cryptographically Verified</p>
+        <p class="party-sub" style="color: var(--gold-champagne); margin-top: 6px;">Packaging: Maison Signature Velvet Presentation Box</p>
+      </div>
+    </div>
+
+    <!-- Calligraphy Gift Inscription (Conditional) -->
+    <div id="giftSection" class="gift-inscription-box">
+      <p class="gift-inscription-title" id="giftHeader">✦ Complimentary Calligraphy Gift Inscription for Lord Julian Sterling</p>
+      <p class="gift-inscription-body" id="giftBody">“Wishing you an unforgettable celebration filled with timeless elegance and exquisite notes. Avec tout mon amour.”</p>
+    </div>
+
+    <!-- Items Manifest -->
+    <table class="cert-items-table">
+      <thead>
+        <tr>
+          <th>Fragrance Selection</th>
+          <th>Specification</th>
+          <th style="text-align: center;">Qty</th>
+          <th style="text-align: right;">Amount</th>
+        </tr>
+      </thead>
+      <tbody id="itemsTableBody">
+        <!-- Rendered by JS -->
+      </tbody>
+    </table>
+
+    <!-- Financials & Master Seal Split -->
+    <div class="financial-split-grid">
+      <div class="seal-wrap">
+        <div class="wax-seal">
+          VÉLORA<br>PARIS<br>SEAL
+        </div>
+        <div class="seal-desc">
+          <strong>Artisanal French Distillation</strong><br>
+          Harvested and bottled under strict supervision in Grasse, France. Lot No. <span id="txtLotNo">GR-7492</span>. Each flacon is hand-inspected for uncompromising purity.
+          <div class="master-signature">
+            <span class="sig-name">Jean-Luc Moreau</span>
+            <span class="sig-title">Master Perfumer • Grasse</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="totals-box">
+        <table>
+          <tr>
+            <td style="color: var(--text-sub);">Flacons Subtotal</td>
+            <td style="text-align: right; font-weight: 500;" id="txtSubtotal">฿3,180</td>
+          </tr>
+          <tr id="rowPrivilegeDiscount" style="color: var(--gold-foil);">
+            <td id="txtDiscountLabel">Privilege Voucher (10% Privilege)</td>
+            <td style="text-align: right;" id="txtDiscount">-฿318</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-sub);">White-Glove Courier</td>
+            <td style="text-align: right; color: var(--gold-foil);" id="txtShipping">COMPLIMENTARY</td>
+          </tr>
+          <tr>
+            <td style="color: var(--text-sub);">Velvet Presentation Coffret</td>
+            <td style="text-align: right; color: var(--gold-foil);">INCLUDED</td>
+          </tr>
+          <tr class="totals-grand-row">
+            <td>Total Settled</td>
+            <td style="text-align: right;" id="txtTotal">฿2,862</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Barcode Section -->
+    <div class="cert-barcode-box">
+      <svg class="barcode-svg" viewBox="0 0 200 35" width="240" height="38">
+        <rect x="0" y="0" width="4" height="28" fill="#fff"/>
+        <rect x="6" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="11" y="0" width="5" height="28" fill="#fff"/>
+        <rect x="19" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="24" y="0" width="4" height="28" fill="#fff"/>
+        <rect x="31" y="0" width="1" height="28" fill="#fff"/>
+        <rect x="35" y="0" width="6" height="28" fill="#fff"/>
+        <rect x="44" y="0" width="3" height="28" fill="#fff"/>
+        <rect x="50" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="55" y="0" width="5" height="28" fill="#fff"/>
+        <rect x="63" y="0" width="3" height="28" fill="#fff"/>
+        <rect x="69" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="74" y="0" width="6" height="28" fill="#fff"/>
+        <rect x="83" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="88" y="0" width="4" height="28" fill="#fff"/>
+        <rect x="95" y="0" width="3" height="28" fill="#fff"/>
+        <rect x="101" y="0" width="6" height="28" fill="#fff"/>
+        <rect x="110" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="115" y="0" width="5" height="28" fill="#fff"/>
+        <rect x="123" y="0" width="3" height="28" fill="#fff"/>
+        <rect x="129" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="134" y="0" width="6" height="28" fill="#fff"/>
+        <rect x="143" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="148" y="0" width="4" height="28" fill="#fff"/>
+        <rect x="155" y="0" width="3" height="28" fill="#fff"/>
+        <rect x="161" y="0" width="5" height="28" fill="#fff"/>
+        <rect x="169" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="174" y="0" width="6" height="28" fill="#fff"/>
+        <rect x="183" y="0" width="2" height="28" fill="#fff"/>
+        <rect x="188" y="0" width="4" height="28" fill="#fff"/>
+        <rect x="195" y="0" width="3" height="28" fill="#fff"/>
+        <text id="barcodeText" x="100" y="34" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">*VEL-849201*</text>
+      </svg>
+    </div>
+
+    <p class="cert-footer-disclaimer">
+      This document certifies the provenance and genuine artisan batch creation of your Maison VÉLORA flacons.<br>
+      For verification questions or concierge assistance, visit www.velora-parfums.com or reach out to concierge@velora-parfums.com.
+    </p>
+  </div>
+
+  <script>
+    // Load last completed order from localStorage or fallback to luxury demo order
+    let order = null;
+    try {
+      const stored = localStorage.getItem('velora_last_order');
+      if (stored) {
+        order = JSON.parse(stored);
+      }
+    } catch(e) {
+      console.warn('Could not read order from localStorage', e);
+    }
+
+    if (!order) {
+      order = {
+        orderNum: 'VEL-849201',
+        orderDate: 'September 25, 2026',
+        orderTime: '10:30 AM',
+        deliveryDays: 'Within 48 Hours',
+        name: 'Lady Eleanor Vance',
+        phone: '081-987-6543',
+        email: 'eleanor.vance@maison-luxe.com',
+        address: 'Suite 1402, Mandarin Oriental Residences, 48 Charoen Krung Rd, Bang Rak, Bangkok 10500',
+        deliveryMethod: 'White-Glove Standard Delivery',
+        paymentMethod: 'PromptPay QR / Bank Transfer',
+        hasGift: true,
+        giftRecipient: 'Lord Julian Sterling',
+        giftMessage: 'Wishing you an unforgettable celebration filled with timeless elegance and exquisite notes. Avec tout mon amour.',
+        items: [
+          {
+            name: 'VÉLORA NOIR',
+            size: '100ml',
+            price: 1990,
+            quantity: 1,
+            image: 'assets/images/noir.jpg'
+          },
+          {
+            name: 'VÉLORA BLOOM',
+            size: '50ml',
+            price: 1190,
+            quantity: 1,
+            image: 'assets/images/bloom.jpg'
+          }
+        ],
+        subtotal: 3180,
+        discountAmount: 318,
+        voucherLabel: '10% Privilege',
+        deliveryFee: 0,
+        grandTotal: 2862
+      };
+    }
+
+    // Populate DOM Elements
+    document.getElementById('txtOrderNum').textContent = '#' + order.orderNum;
+    document.getElementById('txtOrderDate').textContent = `${order.orderDate} • ${order.orderTime || '10:00 AM'}`;
+    document.getElementById('txtDeliveryDays').textContent = order.deliveryDays || 'Within 48 Hours';
+    document.getElementById('txtCustName').textContent = order.name;
+    document.getElementById('txtCustContact').textContent = `${order.phone} • ${order.email}`;
+    document.getElementById('txtCustAddress').textContent = order.address;
+    document.getElementById('txtDeliveryMethod').textContent = `Courier: ${order.deliveryMethod}`;
+    document.getElementById('txtPaymentMethod').textContent = order.paymentMethod;
+    document.getElementById('txtTxnId').textContent = 'TXN-' + Math.random().toString(36).substring(2, 9).toUpperCase();
+    document.getElementById('txtLotNo').textContent = 'GR-' + Math.floor(1000 + Math.random() * 9000);
+    document.getElementById('barcodeText').textContent = `*${order.orderNum}*`;
+
+    // Gift section
+    const giftSec = document.getElementById('giftSection');
+    if (order.hasGift && order.giftMessage) {
+      document.getElementById('giftHeader').textContent = `✦ Complimentary Calligraphy Gift Inscription ${order.giftRecipient ? 'for ' + order.giftRecipient : ''}`;
+      document.getElementById('giftBody').textContent = `“${order.giftMessage}”`;
+      giftSec.style.display = 'block';
+    } else {
+      giftSec.style.display = 'none';
+    }
+
+    // Manifest table
+    const tableBody = document.getElementById('itemsTableBody');
+    tableBody.innerHTML = order.items.map(item => `
+      <tr>
+        <td>
+          <div class="item-cell-flex">
+            <img src="${item.image}" alt="${item.name}" class="item-cell-img" />
+            <div>
+              <p class="item-cell-name">${item.name}</p>
+              <p class="item-cell-sub">Extrait De Parfum • Hand-Numbered Flacon</p>
+            </div>
+          </div>
+        </td>
+        <td style="color: var(--gold-champagne);">${item.size}</td>
+        <td style="text-align: center;">${item.quantity}</td>
+        <td style="text-align: right; font-weight: 600;">฿${(item.price * item.quantity).toLocaleString()}</td>
+      </tr>
+    `).join('');
+
+    // Totals
+    document.getElementById('txtSubtotal').textContent = `฿${order.subtotal.toLocaleString()}`;
+    const discRow = document.getElementById('rowPrivilegeDiscount');
+    if (order.discountAmount > 0) {
+      discRow.style.display = 'table-row';
+      document.getElementById('txtDiscountLabel').textContent = `Privilege Voucher (${order.voucherLabel || 'Special'})`;
+      document.getElementById('txtDiscount').textContent = `-฿${order.discountAmount.toLocaleString()}`;
+    } else {
+      discRow.style.display = 'none';
+    }
+
+    document.getElementById('txtShipping').textContent = (order.deliveryFee === 0) ? 'COMPLIMENTARY' : `฿${order.deliveryFee.toLocaleString()}`;
+    document.getElementById('txtTotal').textContent = `฿${order.grandTotal.toLocaleString()}`;
+
+    // Plaintext export
+    function exportReceiptText() {
+      const text = `
+============================================================
+              VÉLORA HAUTE PARFUMERIE • PARIS
+       OFFICIAL ORDER RECORD & CERTIFICATE OF AUTHENTICITY
+============================================================
+Order Reference : #${order.orderNum}
+Date & Time     : ${order.orderDate} at ${order.orderTime || '10:00 AM'}
+Status          : CONFIRMED & PREPARING
+Estimated Arrival: ${order.deliveryDays}
+
+CLIENT DETAILS:
+Name            : ${order.name}
+Phone           : ${order.phone}
+Email           : ${order.email}
+Destination     : ${order.address}
+Courier Method  : ${order.deliveryMethod}
+Payment Mode    : ${order.paymentMethod}
+${order.hasGift ? `Gift Inscription: "${order.giftMessage}" (For: ${order.giftRecipient || 'Recipient'})\n` : ''}
+------------------------------------------------------------
+PURCHASED FRAGRANCE MANIFEST:
+${order.items.map(i => `- ${i.name} (${i.size}) x ${i.quantity} = ฿${(i.price * i.quantity).toLocaleString()}`).join('\n')}
+
+------------------------------------------------------------
+FINANCIAL SUMMARY:
+Subtotal        : ฿${order.subtotal.toLocaleString()}
+${order.discountAmount > 0 ? `Privilege Disc  : -฿${order.discountAmount.toLocaleString()} (${order.voucherLabel})\n` : ''}Shipping Fee    : ${order.deliveryFee === 0 ? 'COMPLIMENTARY' : '฿' + order.deliveryFee.toLocaleString()}
+Velvet Packaging: INCLUDED
+TOTAL SETTLED   : ฿${order.grandTotal.toLocaleString()}
+============================================================
+Thank you for welcoming VÉLORA into your personal collection.
+www.velora-parfums.com
+      `;
+
+      const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `VELORA-Certificate-${order.orderNum}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>

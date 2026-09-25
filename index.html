@@ -21,6 +21,7 @@
       <div class="nav-left">
         <a href="#collection" class="nav-link">Collection</a>
         <a href="#quiz" class="nav-link">Scent Quiz</a>
+        <a href="#reviews" class="nav-link">Reviews</a>
         <a href="#story" class="nav-link">The Maison</a>
       </div>
 
@@ -29,6 +30,9 @@
       </a>
 
       <div class="nav-right">
+        <a href="receipt.html" class="nav-receipt-btn" title="View Official Digital Certificate & Receipt">
+          <span>📜 Sample Receipt</span>
+        </a>
         <button id="cartBtn" class="cart-btn" aria-label="View Shopping Bag">
           <svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
             <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -139,6 +143,47 @@
     </div>
   </section>
 
+  <!-- Customer Reviews & Editorial Accolades -->
+  <section id="reviews" class="reviews-section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-tag">CRITICS & CONNOISSEURS</p>
+        <h2 class="section-title">Maison Accolades & Reviews</h2>
+        <div class="gold-divider"></div>
+        <p class="section-desc">Celebrated by the world’s most discerning fragrance critics, editorial publications, and verified patrons.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">“VÉLORA NOIR is nocturnal perfection. The smoked cedarwood and tonka amber linger effortlessly on skin for 16+ hours with magnetic sillage.”</p>
+          <div class="review-author">
+            <strong>VOGUE BEAUTY</strong>
+            <span>Haute Parfumerie Selection 2026</span>
+          </div>
+        </div>
+
+        <div class="review-card highlight-review">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">“BLOOM captures dew-kissed Grasse Damask roses with an intimacy and velvety sweetness that redefines modern floral luxury.”</p>
+          <div class="review-author">
+            <strong>HARPER'S BAZAAR</strong>
+            <span>Fragrance of the Year Winner</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-quote">“VÉLORA OUD is majestic, warm, and regal without overwhelming. The saffron opening into rare agarwood is an intoxicating triumph.”</p>
+          <div class="review-author">
+            <strong>GQ GENTLEMAN</strong>
+            <span>The Private Vault Review</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- The Maison Story -->
   <section id="story" class="story-section">
     <div class="container story-grid">
@@ -176,7 +221,9 @@
         <div class="col">
           <h5>Boutique</h5>
           <a href="#quiz">Scent Sommelier</a>
+          <a href="#reviews">Maison Reviews</a>
           <a href="#story">Our Heritage</a>
+          <a href="receipt.html" class="gold-link">Official Digital Receipt</a>
           <a href="#cartBtn" id="footerBagLink">Shopping Bag</a>
         </div>
         <div class="col">
@@ -237,9 +284,16 @@
       <!-- Checkout Form View -->
       <div id="checkoutFormView">
         <div class="checkout-header">
-          <p class="section-tag">BOUTIQUE CHECKOUT</p>
-          <h3 class="checkout-title">Complete Your Acquisition</h3>
-          <p class="checkout-desc">Enter your delivery details and choose your bespoke payment preference.</p>
+          <div class="checkout-header-flex">
+            <div>
+              <p class="section-tag">BOUTIQUE CHECKOUT</p>
+              <h3 class="checkout-title">Complete Your Acquisition</h3>
+              <p class="checkout-desc">Enter your delivery details and choose your bespoke payment preference.</p>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm autofill-btn" onclick="autoFillDemoData()" title="Quick fill realistic data for presentation">
+              <span>⚡ Auto-Fill Demo</span>
+            </button>
+          </div>
         </div>
 
         <form id="checkoutForm" onsubmit="handlePlaceOrder(event)">
@@ -484,9 +538,12 @@
       <div id="orderSuccessView" class="success-view hidden">
         <div class="receipt-outer-container">
           <div class="receipt-actions-top">
-            <button type="button" class="btn btn-outline btn-sm" onclick="printReceipt()">
+            <button type="button" class="btn btn-gold btn-sm" onclick="printReceipt()">
               <span style="margin-right: 6px;">🖨️</span> Print Official Receipt
             </button>
+            <a href="receipt.html" target="_blank" class="btn btn-outline btn-sm">
+              <span style="margin-right: 6px;">↗</span> Dedicated Certificate Page
+            </a>
             <button type="button" class="btn btn-outline btn-sm" onclick="downloadReceiptTxt()">
               <span style="margin-right: 6px;">📄</span> Save Text Record
             </button>

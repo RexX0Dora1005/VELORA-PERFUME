@@ -1856,8 +1856,182 @@ textarea:focus {
   to { transform: translateY(0); opacity: 1; }
 }
 
+/* ================= Navigation Receipt Button ================= */
+.nav-receipt-btn {
+  color: var(--gold-champagne);
+  border: 1px solid var(--border-gold);
+  background: rgba(212, 175, 55, 0.08);
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 0.76rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition);
+  margin-right: 12px;
+}
+
+.nav-receipt-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--gold-primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.gold-link {
+  color: var(--gold-champagne) !important;
+}
+
+.gold-link:hover {
+  color: var(--gold-primary) !important;
+  text-decoration: underline;
+}
+
+/* ================= Reviews Section ================= */
+.reviews-section {
+  padding: 90px 0;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, #111 50%, var(--bg-primary) 100%);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+.review-card:hover {
+  border-color: var(--border-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.highlight-review {
+  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(26, 23, 16, 0.9);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.review-stars {
+  color: var(--gold-primary);
+  letter-spacing: 3px;
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+.review-quote {
+  font-family: var(--font-serif);
+  font-size: 1.12rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: #e5e5e5;
+  margin-bottom: 22px;
+}
+
+.review-author {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-author strong {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  color: var(--gold-champagne);
+  text-transform: uppercase;
+}
+
+.review-author span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* ================= Checkout Header & Auto-Fill ================= */
+.checkout-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.autofill-btn {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+  font-size: 0.72rem;
+  padding: 8px 14px;
+  white-space: nowrap;
+}
+
+.autofill-btn:hover {
+  background: var(--gold-primary);
+  color: #000;
+}
+
+/* ================= Additional Receipt Details ================= */
+.receipt-tax-meta {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 6px;
+  letter-spacing: 1px;
+}
+
+.receipt-barcode-wrap {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.barcode-svg {
+  filter: invert(0.9);
+  height: 40px;
+}
+
+.receipt-signature-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  margin-top: 14px;
+}
+
+.receipt-signature-img {
+  font-family: 'Cormorant Garamond', cursive;
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--gold-champagne);
+  letter-spacing: 1px;
+}
+
+.receipt-signature-title {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
+  .reviews-grid { grid-template-columns: 1fr; }
+  .checkout-header-flex { flex-direction: column; align-items: stretch; }
   .hero-title { font-size: 2.6rem; }
   .modal-product-content { grid-template-columns: 1fr; }
   .story-grid { grid-template-columns: 1fr; }

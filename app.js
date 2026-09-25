@@ -540,6 +540,9 @@ function handlePlaceOrder(e) {
     grandTotal
   };
 
+  // Persist last completed order so standalone receipt page (receipt.html) can read it
+  localStorage.setItem('velora_last_order', JSON.stringify(lastCompletedOrder));
+
   // Render Deluxe Official Receipt & Certificate
   const receipt = document.getElementById('orderReceipt');
   if (receipt) {
@@ -548,6 +551,7 @@ function handlePlaceOrder(e) {
         <img src="assets/images/logo.jpg" alt="VÉLORA Emblem" class="receipt-logo-img" />
         <h3>VÉLORA PARFUMS</h3>
         <p>OFFICIAL ORDER RECEIPT & CERTIFICATE OF AUTHENTICITY</p>
+        <p class="receipt-tax-meta">Maison VÉLORA S.A. • 30 Rue de la Paix, 75002 Paris • Tax ID: 0-1055-67012-99-1</p>
       </div>
 
       <div class="receipt-ribbon">
@@ -603,7 +607,7 @@ function handlePlaceOrder(e) {
           </tr>
         </thead>
         <tbody>
-          ${cart.map(item => `
+          ${lastCompletedOrder.items.map(item => `
             <tr>
               <td>
                 <div class="manifest-item-flex">
@@ -629,7 +633,11 @@ function handlePlaceOrder(e) {
           </div>
           <div class="receipt-seal-text">
             <strong>Certified Authentic Artisanal Extraction</strong><br>
-            Formulated in Grasse, France. Every flacon is packaged in our signature black velvet presentation coffret.
+            Formulated in Grasse, France. Lot No. GR-${Math.floor(1000 + Math.random() * 9000)}. Packaged in signature velvet presentation coffret.
+            <div class="receipt-signature-wrap">
+              <span class="receipt-signature-img">Jean-Luc Moreau</span>
+              <span class="receipt-signature-title">Master Perfumer • Grasse</span>
+            </div>
           </div>
         </div>
 
@@ -641,7 +649,7 @@ function handlePlaceOrder(e) {
             </tr>
             ${discountAmount > 0 ? `
               <tr style="color: var(--gold-primary);">
-                <td>Privilege Discount (${appliedVoucher.label})</td>
+                <td>Privilege Discount (${appliedVoucher ? appliedVoucher.label : 'Special'})</td>
                 <td style="text-align: right;">-฿${discountAmount.toLocaleString()}</td>
               </tr>
             ` : ''}
@@ -659,6 +667,44 @@ function handlePlaceOrder(e) {
             </tr>
           </table>
         </div>
+      </div>
+
+      <div class="receipt-barcode-wrap">
+        <!-- Authentic SVG Barcode -->
+        <svg class="barcode-svg" viewBox="0 0 200 35" width="220" height="36">
+          <rect x="0" y="0" width="4" height="28" fill="#fff"/>
+          <rect x="6" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="11" y="0" width="5" height="28" fill="#fff"/>
+          <rect x="19" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="24" y="0" width="4" height="28" fill="#fff"/>
+          <rect x="31" y="0" width="1" height="28" fill="#fff"/>
+          <rect x="35" y="0" width="6" height="28" fill="#fff"/>
+          <rect x="44" y="0" width="3" height="28" fill="#fff"/>
+          <rect x="50" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="55" y="0" width="5" height="28" fill="#fff"/>
+          <rect x="63" y="0" width="3" height="28" fill="#fff"/>
+          <rect x="69" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="74" y="0" width="6" height="28" fill="#fff"/>
+          <rect x="83" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="88" y="0" width="4" height="28" fill="#fff"/>
+          <rect x="95" y="0" width="3" height="28" fill="#fff"/>
+          <rect x="101" y="0" width="6" height="28" fill="#fff"/>
+          <rect x="110" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="115" y="0" width="5" height="28" fill="#fff"/>
+          <rect x="123" y="0" width="3" height="28" fill="#fff"/>
+          <rect x="129" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="134" y="0" width="6" height="28" fill="#fff"/>
+          <rect x="143" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="148" y="0" width="4" height="28" fill="#fff"/>
+          <rect x="155" y="0" width="3" height="28" fill="#fff"/>
+          <rect x="161" y="0" width="5" height="28" fill="#fff"/>
+          <rect x="169" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="174" y="0" width="6" height="28" fill="#fff"/>
+          <rect x="183" y="0" width="2" height="28" fill="#fff"/>
+          <rect x="188" y="0" width="4" height="28" fill="#fff"/>
+          <rect x="195" y="0" width="3" height="28" fill="#fff"/>
+          <text x="100" y="34" fill="#a0a0a0" font-size="7" text-anchor="middle" font-family="monospace">*${orderNum}*</text>
+        </svg>
       </div>
     `;
   }
@@ -878,4 +924,56 @@ function setupEventListeners() {
     if (e.target === cartDrawer) closeCart();
   });
 }
+
+// Presentation Demo Auto-Fill
+function autoFillDemoData() {
+  const nameInput = document.getElementById('custName');
+  const phoneInput = document.getElementById('custPhone');
+  const emailInput = document.getElementById('custEmail');
+  const addrInput = document.getElementById('custAddress');
+
+  if (nameInput) nameInput.value = 'Lady Eleanor Vance';
+  if (phoneInput) phoneInput.value = '081-987-6543';
+  if (emailInput) emailInput.value = 'eleanor.vance@maison-luxe.com';
+  if (addrInput) addrInput.value = 'Suite 1402, Mandarin Oriental Residences, 48 Charoen Krung Rd, Bang Rak, Bangkok 10500';
+
+  // Toggle Gift Inscription
+  const giftToggle = document.getElementById('giftOptionToggle');
+  const giftDetails = document.getElementById('giftDetailsContainer');
+  const giftRecipient = document.getElementById('giftRecipient');
+  const giftMsg = document.getElementById('giftMessage');
+
+  if (giftToggle && giftDetails) {
+    giftToggle.checked = true;
+    giftDetails.classList.remove('hidden');
+    if (giftRecipient) giftRecipient.value = 'Lord Julian Sterling';
+    if (giftMsg) giftMsg.value = 'Wishing you an unforgettable celebration filled with timeless elegance and exquisite notes. Avec tout mon amour.';
+  }
+
+  // Auto-apply VIP voucher
+  const voucherInput = document.getElementById('voucherCode');
+  if (voucherInput) {
+    voucherInput.value = 'VELORA10';
+    handleApplyVoucher();
+  }
+
+  showToast('⚡ Demo VIP details & 10% privilege applied!');
+}
+window.autoFillDemoData = autoFillDemoData;
+
+// Instant Demo Receipt Workflow
+function previewSampleReceipt() {
+  if (!cart || cart.length === 0) {
+    const noir = PRODUCTS.find(p => p.id === 'noir') || PRODUCTS[0];
+    const bloom = PRODUCTS.find(p => p.id === 'bloom') || PRODUCTS[1];
+    addToCart(noir.id, noir.name, '100ml', noir.price100, noir.image);
+    addToCart(bloom.id, bloom.name, '50ml', bloom.price50, bloom.image);
+  }
+  openCheckout();
+  setTimeout(() => {
+    autoFillDemoData();
+  }, 200);
+}
+window.previewSampleReceipt = previewSampleReceipt;
+
 
