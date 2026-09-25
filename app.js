@@ -727,6 +727,73 @@ function printReceipt() {
   window.print();
 }
 
+// Dynamic PDF Receipt Generation & Download for Any Order
+function downloadOrderReceiptPDF() {
+  const receiptElem = document.getElementById('orderReceipt');
+  if (!receiptElem) {
+    showToast('Receipt element not found.');
+    return;
+  }
+
+  const orderNum = (lastCompletedOrder && lastCompletedOrder.orderNum) ? lastCompletedOrder.orderNum : 'VELORA';
+  showToast('Generating official PDF receipt...');
+
+  const opt = {
+    margin:       [8, 8, 8, 8],
+    filename:     `VELORA-Receipt-${orderNum}.pdf`,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true, letterRendering: true, logging: false },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  if (typeof html2pdf !== 'undefined') {
+    html2pdf().set(opt).from(receiptElem).save().then(() => {
+      showToast(`✓ PDF Receipt #${orderNum} downloaded!`);
+    }).catch(err => {
+      console.warn('PDF download error:', err);
+      window.print();
+    });
+  } else {
+    window.print();
+  }
+}
+window.downloadOrderReceiptPDF = downloadOrderReceiptPDF;
+
+// View Dynamic PDF in New Tab for Any Order
+function viewOrderReceiptPDF() {
+  const receiptElem = document.getElementById('orderReceipt');
+  if (!receiptElem) {
+    showToast('Receipt element not found.');
+    return;
+  }
+
+  const orderNum = (lastCompletedOrder && lastCompletedOrder.orderNum) ? lastCompletedOrder.orderNum : 'VELORA';
+  showToast('Preparing PDF preview...');
+
+  const opt = {
+    margin:       [8, 8, 8, 8],
+    filename:     `VELORA-Receipt-${orderNum}.pdf`,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true, letterRendering: true, logging: false },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  if (typeof html2pdf !== 'undefined') {
+    html2pdf().set(opt).from(receiptElem).toPdf().get('pdf').then(pdf => {
+      const blobUrl = pdf.output('bloburl');
+      window.open(blobUrl, '_blank');
+      showToast('✓ PDF preview opened in new tab.');
+    }).catch(err => {
+      console.warn('PDF preview error:', err);
+      window.print();
+    });
+  } else {
+    window.print();
+  }
+}
+window.viewOrderReceiptPDF = viewOrderReceiptPDF;
+
+
 // Download Plaintext Receipt
 function downloadReceiptTxt() {
   if (!lastCompletedOrder) return;

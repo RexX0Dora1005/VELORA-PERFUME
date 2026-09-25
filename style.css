@@ -1754,7 +1754,9 @@ textarea:focus {
   #checkoutModal,
   #orderSuccessView,
   #orderReceipt,
-  #orderReceipt * {
+  #orderReceipt *,
+  #certificateCard,
+  #certificateCard * {
     visibility: visible;
   }
   #checkoutModal {
@@ -1766,8 +1768,14 @@ textarea:focus {
     background: transparent !important;
     backdrop-filter: none !important;
   }
+  #certificateCard {
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
   .receipt-actions-top,
   .receipt-actions-bottom,
+  .top-toolbar,
   .modal-close {
     display: none !important;
   }

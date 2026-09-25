@@ -520,11 +520,14 @@
       </a>
     </div>
     <div class="toolbar-actions">
-      <a href="VELORA_Official_Checkout_Receipt.pdf" download="VELORA_Official_Checkout_Receipt.pdf" class="btn btn-gold btn-sm" style="text-decoration: none;">
-        <span>📥 Download Official PDF</span>
-      </a>
+      <button type="button" class="btn btn-gold btn-sm" onclick="downloadCertificatePDF()">
+        <span>📥 Download PDF</span>
+      </button>
+      <button type="button" class="btn btn-outline btn-sm" onclick="viewCertificatePDF()">
+        <span>👁️ View PDF in Tab</span>
+      </button>
       <button type="button" class="btn btn-outline btn-sm" onclick="window.print()">
-        <span>🖨️ Print / Save PDF</span>
+        <span>🖨️ Print / Save A4</span>
       </button>
       <button type="button" class="btn btn-outline btn-sm" onclick="exportReceiptText()">
         <span>📄 Text Record</span>
@@ -696,6 +699,12 @@
     </p>
   </div>
 
+  <!-- Notification Toast -->
+  <div id="toast" class="toast-notification hidden">
+    <span id="toastMsg">Notification</span>
+  </div>
+
+  <script src="assets/js/html2pdf.bundle.min.js"></script>
   <script>
     // Load last completed order from localStorage or fallback to luxury demo order
     let order = null;
@@ -847,6 +856,72 @@ www.velora-parfums.com
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
+      showToast('✓ Plaintext record downloaded.');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => { toast.classList.add('hidden'); }, 3200);
+    }
+
+    function downloadCertificatePDF() {
+      const elem = document.getElementById('certificateCard');
+      if (!elem) return;
+
+      const orderRef = order?.orderNum || 'Official';
+      showToast('Generating official PDF receipt...');
+
+      const opt = {
+        margin:       [8, 8, 8, 8],
+        filename:     `VELORA-Certificate-Invoice-${orderRef}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true, logging: false },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      if (typeof html2pdf !== 'undefined') {
+        html2pdf().set(opt).from(elem).save().then(() => {
+          showToast(`✓ PDF Receipt #${orderRef} downloaded!`);
+        }).catch(err => {
+          console.warn('PDF download error:', err);
+          window.print();
+        });
+      } else {
+        window.print();
+      }
+    }
+
+    function viewCertificatePDF() {
+      const elem = document.getElementById('certificateCard');
+      if (!elem) return;
+
+      const orderRef = order?.orderNum || 'Official';
+      showToast('Rendering PDF preview in tab...');
+
+      const opt = {
+        margin:       [8, 8, 8, 8],
+        filename:     `VELORA-Certificate-Invoice-${orderRef}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true, logging: false },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      if (typeof html2pdf !== 'undefined') {
+        html2pdf().set(opt).from(elem).toPdf().get('pdf').then(pdf => {
+          const blobUrl = pdf.output('bloburl');
+          window.open(blobUrl, '_blank');
+          showToast('✓ PDF preview opened in new tab.');
+        }).catch(err => {
+          console.warn('PDF preview error:', err);
+          window.print();
+        });
+      } else {
+        window.print();
+      }
     }
   </script>
 </body>

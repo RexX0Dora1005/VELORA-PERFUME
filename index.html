@@ -535,14 +535,17 @@
       <div id="orderSuccessView" class="success-view hidden">
         <div class="receipt-outer-container">
           <div class="receipt-actions-top">
-            <a href="VELORA_Official_Checkout_Receipt.pdf" download="VELORA_Official_Checkout_Receipt.pdf" class="btn btn-gold btn-sm" style="text-decoration: none;">
-              <span style="margin-right: 6px;">📥</span> Download PDF
-            </a>
+            <button type="button" class="btn btn-gold btn-sm" onclick="downloadOrderReceiptPDF()">
+              <span style="margin-right: 6px;">📥</span> Download PDF Receipt
+            </button>
+            <button type="button" class="btn btn-outline btn-sm" onclick="viewOrderReceiptPDF()">
+              <span style="margin-right: 6px;">👁️</span> View PDF
+            </button>
             <button type="button" class="btn btn-outline btn-sm" onclick="printReceipt()">
-              <span style="margin-right: 6px;">🖨️</span> Print Final Receipt
+              <span style="margin-right: 6px;">🖨️</span> Print A4
             </button>
             <a href="receipt.html" class="btn btn-outline btn-sm">
-              <span style="margin-right: 6px;">↗</span> Fullpage Final Receipt
+              <span style="margin-right: 6px;">↗</span> Dedicated Page
             </a>
             <button type="button" class="btn btn-outline btn-sm" onclick="downloadReceiptTxt()">
               <span style="margin-right: 6px;">📄</span> Text Record
@@ -567,6 +570,7 @@
     <span id="toastMsg">Added to Bag</span>
   </div>
 
+  <script src="assets/js/html2pdf.bundle.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
