@@ -535,14 +535,17 @@
       <div id="orderSuccessView" class="success-view hidden">
         <div class="receipt-outer-container">
           <div class="receipt-actions-top">
-            <button type="button" class="btn btn-gold btn-sm" onclick="printReceipt()">
+            <a href="VELORA_Official_Checkout_Receipt.pdf" download="VELORA_Official_Checkout_Receipt.pdf" class="btn btn-gold btn-sm" style="text-decoration: none;">
+              <span style="margin-right: 6px;">📥</span> Download PDF
+            </a>
+            <button type="button" class="btn btn-outline btn-sm" onclick="printReceipt()">
               <span style="margin-right: 6px;">🖨️</span> Print Final Receipt
             </button>
             <a href="receipt.html" class="btn btn-outline btn-sm">
               <span style="margin-right: 6px;">↗</span> Fullpage Final Receipt
             </a>
             <button type="button" class="btn btn-outline btn-sm" onclick="downloadReceiptTxt()">
-              <span style="margin-right: 6px;">📄</span> Save Text Record
+              <span style="margin-right: 6px;">📄</span> Text Record
             </button>
           </div>
 
